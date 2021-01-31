@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org" lang="en-gb">
+<!-- HEAD BLOCK -->
+<head th:fragment="head">
+    <!--/*@thymesVar id="title" type="java.lang.String"*/-->
+    <title th:if="${title != null}" th:text="${title}"></title>
+    <title th:if="${title == null}">GUILE</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <script async="" src="/js/functions_0.0.1-SNAPSHOT-min.js"></script>
+</head>
+<body>
+<!-- TOP BAR -->
+<div class="top-toolbar" th:fragment="top">
+    <span>GUILE</span>
+</div>
+</body>
+</html>

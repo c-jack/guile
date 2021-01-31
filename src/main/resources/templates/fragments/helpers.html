@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="infoMessage" type="java.lang.String"*/-->
+<!--/*@thymesVar id="errorMessage" type="java.lang.String"*/-->
+<!--/*@thymesVar id="Progress" type="java.util.Map"*/-->
+<!--/*@thymesVar id="Completed" type="java.lang.Integer"*/-->
+<!--/*@thymesVar id="Total" type="java.lang.Integer"*/-->
+<!--/*@thymesVar id="Detail" type="java.lang.String"*/-->
+<body>
+<span class="message-container" th:fragment="info">
+    <span id="info" th:if="${infoMessage}">
+        <strong>[[${infoMessage[0]}]]</strong>
+        [[${infoMessage[1]}]]
+    </span>
+    <span id="error" th:if="${errorMessage}">
+        <strong>[[${errorMessage[0]}]]</strong>
+        [[${errorMessage[1]}]]
+    </span>
+</span>
+<span th:fragment="progress">
+            <span class="progress-bar">
+                <span class="progress-fill"
+                      th:style="'width:' + ${100.0 * Progress[Completed] / Progress[Total]} + '%'">&nbsp;</span>
+                <span class="progress-text">[[${Progress[Completed]}]]/[[${Progress[Total]}]]</span>
+            </span>
+            <span class="progress-detail" id="spinnerDetail" th:text="${Progress[Detail]}"></span>
+</span>
+<span class="message-container" th:fragment="infoContainer">
+</span>
+<div class="spinner-icon" id="spinner" th:fragment="spinner">
+    <div class="mucow-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <span class="label">[[${spinnerMessage}]]
+        <span id="spinnerProgress">
+            <span class="progress-bar">
+                <span class="progress-fill" th:style="'width:0'">&nbsp;</span>
+                <span class="progress-text">Loading...</span>
+            </span>
+            <span class="progress-detail"></span>
+        </span>
+    </span>
+</div>
+</body>
+</html>

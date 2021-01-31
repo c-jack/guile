@@ -1,0 +1,6 @@
+# Which ports should GUILE run on (accessible by HTTPS only)
+#server:
+#  port: 15080
+
+## Logging level
+source: /Users/chrisjackson/IdeaProjects/database/

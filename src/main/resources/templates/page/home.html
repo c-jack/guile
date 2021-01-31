@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+<div id="content" class="content-container" layout:fragment="content">
+    <form id="connection">
+        <legend>Available Connections:</legend>
+        <div class="container">
+            <div th:each="connection, c: ${connectionList}">
+                <label th:for="${'conn' + c.index}" th:text="${connection}"></label>
+                <input th:id="${'conn' + c.index}"
+                       th:value="${connection}"
+                       type="radio"
+                       name="connection"/>
+            </div>
+        </div>
+    </form>
+    <button class="btn" th:onclick="setConnection()">
+            <span>
+            Set Connection
+            </span>
+    </button>
+    <form id="changelog">
+        <legend>Changelogs:</legend>
+        <div class="container">
+            <th:block th:each="node : ${directory.getChildren()}">
+                <span th:text="${node.getKey()}"></span>
+                <th:block th:fragment="f_call(node)"
+                          th:unless="${#lists.isEmpty(node.getValue().getChildren())}">
+                    <div class="dir"
+                         th:each="child : ${node.getValue().getChildren()}"
+                         th:inline="text">
+                        <th:block th:if="${child.getValue().hasGrandChildren()}">
+                            <span class="item" th:text="${child.getKey()}"></span>
+                            <div th:replace="this::f_call(${child})"></div>
+                        </th:block>
+                        <th:block th:if="${child.getValue().hasChildren() and !child.getValue().hasGrandChildren()}">
+                            <label th:for="${child.getValue().getPath()}"
+                                   th:text="${child.getKey()}"></label>
+                            <input th:id="${child.getValue().getPath()}"
+                                   th:value="${child.getValue().getPath()}"
+                                   type="radio"
+                                   name="changelog"/>
+                        </th:block>
+                    </div>
+                </th:block>
+            </th:block>
+        </div>
+    </form>
+    <button class="btn" th:onclick="setChangelog()">
+            <span>
+            Set Changelog
+            </span>
+    </button>
+
+    <a href="status">Status</a>
+    <a href="dropAll">DropAll</a>
+    <a href="dryRun">Dry Run</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+</head>
+<body>
+<div id="content" class="content-container" layout:fragment="content">
+    <p th:text="${connection}"></p>
+    <p th:text="${changelog}"></p>
+    Status
+    <div id="status" class="status" th:utext="${result}"></div>
+</div>
+</body>
+</html>

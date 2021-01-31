@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- FOOTER -->
+<div class="footer" th:fragment="footer">
+    <div id="overlay" class="overlay hide">
+    </div>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        /*[# th:each="script, iStat : ${scripts}"]*/
+        var index = [[${iStat.index}]]
+        var po
+        [[${iStat.index}]] = document.createElement('script');
+        var scriptName
+        [[${iStat.index}]] = [[${script}]];
+        if (scriptName[[${iStat.index}]].length > 0) {
+            po[[${iStat.index}]].type = 'text/javascript';
+            po[[${iStat.index}]].async = true;
+            po[[${iStat.index}]].src = "/js/" + scriptName[[${iStat.index}]] + "_${project.version}-min.js";
+            var s
+            [[${iStat.index}]] = document.getElementsByTagName('script')[0];
+            s[[${iStat.index}]].parentNode.insertBefore(po[[${iStat.index}]], s[[${iStat.index}]]);
+        }
+        /*[/]*/
+
+        /*]]>*/
+    </script>
+</div>
+</body>
+</html>

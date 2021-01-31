@@ -1,0 +1,18 @@
+my-profile-test:
+  name: test
+  config:
+    url: jdbc:oracle:thin:@someurl:1234
+    driver: oracle.jdbc.OracleDriver
+    username: user
+    password: pass
+  properties:
+      scheme: DEMO
+      variant: DEV
+      environment: DEV
+      onSqlOutput: TEST
+test2:
+  name: test2
+  config:
+    username: usern
+    password: passw
+    url: url
